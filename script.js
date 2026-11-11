@@ -45,7 +45,7 @@ function append(value){if(justCalculated){if(/^[0-9.πa-z(]/.test(value))express
 function clearAll(){expression='';justCalculated=false;refresh();}
 function backspace(){expression=expression.slice(0,-1);justCalculated=false;refresh();}
 function equals(){if(!expression)return;try{const input=expression;const answer=calculate(expression);const rendered=format(answer);lastAnswer=answer;expression=rendered;justCalculated=true;refresh();onResult(input,rendered);}catch(e){errorEl.textContent=e.message;resultEl.textContent='Error';}}
-function onResult(input,rendered){/* En una actualización se registra aquí el historial. */}
+function onResult(input,rendered){saveHistory(input,rendered);}
 keysEl.addEventListener('click',ev=>{const btn=ev.target.closest('button');if(!btn)return;if(btn.dataset.value!==undefined)append(btn.dataset.value);if(btn.dataset.action==='clear')clearAll();if(btn.dataset.action==='backspace')backspace();if(btn.dataset.action==='equals')equals();});
 modeEl.addEventListener('click',()=>{degreeMode=!degreeMode;modeEl.textContent=degreeMode?'DEG':'RAD';refresh();});
 document.addEventListener('keydown',ev=>{if(ev.ctrlKey||ev.altKey||ev.metaKey||['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;const k=ev.key;if(/^[0-9.+\-*/^()%!]$/.test(k)&&k.length===1){ev.preventDefault();append(k);}else if(k==='Enter'||k==='='){ev.preventDefault();equals();}else if(k==='Backspace'){ev.preventDefault();backspace();}else if(k==='Escape'){ev.preventDefault();clearAll();}});
@@ -65,3 +65,11 @@ function updateMemory(){memoryBadge.hidden=memoryValue===0;localStorage.setItem(
 function currentNumber(){return expression?calculate(expression):lastAnswer;}
 document.querySelector('.memory-controls').addEventListener('click',event=>{const act=event.target.dataset.action;if(!act)return;try{if(act==='memory-clear')memoryValue=0;if(act==='memory-add')memoryValue+=currentNumber();if(act==='memory-recall'){append('('+format(memoryValue)+')');}updateMemory();errorEl.textContent='';}catch(error){errorEl.textContent=error.message;}});
 updateMemory();
+
+// CAMBIO 3: historial local, recuperable pulsando una operación.
+const historyList=document.querySelector('#historyList');
+let historyEntries=[];try{historyEntries=JSON.parse(localStorage.getItem('novacalc-history')||'[]');if(!Array.isArray(historyEntries))historyEntries=[];}catch{historyEntries=[];}
+function renderHistory(){historyList.replaceChildren();if(historyEntries.length===0){const li=document.createElement('li');li.className='empty-history';li.textContent='Tus operaciones aparecerán aquí.';historyList.append(li);return;}for(const item of historyEntries){const li=document.createElement('li'),btn=document.createElement('button'),left=document.createElement('span'),right=document.createElement('strong');btn.type='button';left.textContent=visual(item.input);right.textContent='= '+item.output;btn.append(left,right);btn.addEventListener('click',()=>{expression=item.input;justCalculated=false;refresh();window.scrollTo({top:0,behavior:'smooth'});});li.append(btn);historyList.append(li);}}
+function saveHistory(input,output){historyEntries.unshift({input,output});historyEntries=historyEntries.slice(0,12);localStorage.setItem('novacalc-history',JSON.stringify(historyEntries));renderHistory();}
+document.querySelector('#clearHistory').addEventListener('click',()=>{historyEntries=[];localStorage.removeItem('novacalc-history');renderHistory();});
+renderHistory();
