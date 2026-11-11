@@ -57,3 +57,11 @@ if(localStorage.getItem('novacalc-theme')==='light')document.body.classList.add(
 function updateThemeLabel(){themeButton.textContent=document.body.classList.contains('light')?'☾ Tema oscuro':'☀ Tema claro';}
 themeButton.addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('novacalc-theme',document.body.classList.contains('light')?'light':'dark');updateThemeLabel();});
 updateThemeLabel();
+
+// CAMBIO 2: memoria numérica MC, MR y M+.
+let memoryValue=Number(localStorage.getItem('novacalc-memory')||'0');
+const memoryBadge=document.querySelector('#memoryBadge');
+function updateMemory(){memoryBadge.hidden=memoryValue===0;localStorage.setItem('novacalc-memory',String(memoryValue));}
+function currentNumber(){return expression?calculate(expression):lastAnswer;}
+document.querySelector('.memory-controls').addEventListener('click',event=>{const act=event.target.dataset.action;if(!act)return;try{if(act==='memory-clear')memoryValue=0;if(act==='memory-add')memoryValue+=currentNumber();if(act==='memory-recall'){append('('+format(memoryValue)+')');}updateMemory();errorEl.textContent='';}catch(error){errorEl.textContent=error.message;}});
+updateMemory();

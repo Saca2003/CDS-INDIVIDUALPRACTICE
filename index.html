@@ -18,7 +18,7 @@
       <section class="calculator" aria-label="Calculadora científica">
         <div class="cal-top"><span><span class="status-dot"></span> CALCULADORA CIENTÍFICA</span><button id="modeToggle" class="mode" type="button" title="Alternar grados y radianes">DEG</button></div>
         <div class="display" aria-live="polite" aria-atomic="true"><div id="expression" class="expression">0</div><div id="result" class="result">0</div><div id="error" class="error" role="status"></div></div>
-        
+        <div class="memory-controls" aria-label="Memoria de calculadora"><button data-action="memory-clear">MC</button><button data-action="memory-recall">MR</button><button data-action="memory-add">M+</button><span id="memoryBadge" class="memory-badge" hidden>M</span></div>
         <div class="keys" id="keys">
           <button data-value="sin(" class="fn">sin</button><button data-value="cos(" class="fn">cos</button><button data-value="tan(" class="fn">tan</button><button data-value="sqrt(" class="fn">√</button><button data-action="clear" class="danger">AC</button>
           <button data-value="log(" class="fn">log</button><button data-value="ln(" class="fn">ln</button><button data-value="(" class="fn">(</button><button data-value=")" class="fn">)</button><button data-action="backspace" class="fn">⌫</button>

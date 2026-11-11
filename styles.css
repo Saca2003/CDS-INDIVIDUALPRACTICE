@@ -4,3 +4,6 @@
 
 /* CAMBIO 1: selector de tema visual */
 .top-action{border:1px solid var(--border);border-radius:30px;padding:11px 15px;background:var(--panel);color:var(--ink);font-size:12px;font-weight:700}.top-action:hover{border-color:var(--accent)}body.light{--bg:#eaf2f5;--panel:#ffffff;--panel2:#e0f0f3;--ink:#182b3e;--muted:#526b7b;--accent:#087f77;--border:#cee0e6;--btn:#eaf1f6;--fn:#e1eaf2;--shadow:0 24px 65px rgba(20,45,65,.12);background:var(--bg)}body.light .display{background:#f6fafc}body.light .mode{background:#d4f1e8;color:#087f77}body.light .keys button:hover{background:#d1e7ec}body.light .keys .operator{background:#dcf3eb;color:#087f77}body.light .keys .danger{background:#ffebeb;color:#b63344}body.light .keys .equals{background:#087f77;color:white}body.light .note{background:#e1f3f2;border-color:#bfdfde}body.light .brand-mark{color:white}body.light .keys .fn{color:#24475b}
+
+/* CAMBIO 2: memoria matemática */
+.memory-controls{display:flex;gap:8px;align-items:center;margin-bottom:13px}.memory-controls button{background:var(--panel2);color:var(--accent);border-radius:8px;padding:9px 16px;font-size:12px;font-weight:800}.memory-controls button:hover{filter:brightness(1.15)}.memory-badge{margin-left:auto;border-radius:8px;background:var(--accent);color:var(--bg);font-weight:800;font-size:11px;padding:6px 10px}.memory-badge[hidden]{display:none}
