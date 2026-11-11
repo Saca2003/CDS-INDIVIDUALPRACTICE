@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Calculadora científica web con funciones matemáticas, interfaz adaptable y uso sin conexión.">
+  <title>NovaCalc | Calculadora científica</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="site-header">
+      <div class="brand"><span class="brand-mark">∑</span><div><span class="eyebrow">PROYECTO ACADÉMICO</span><h1>Nova<span>Calc</span></h1></div></div>
+      <div class="header-actions"><span class="tag">100% WEB · SIN INSTALAR</span></div>
+    </header>
+    <div class="content-layout">
+      <section class="calculator" aria-label="Calculadora científica">
+        <div class="cal-top"><span><span class="status-dot"></span> CALCULADORA CIENTÍFICA</span><button id="modeToggle" class="mode" type="button" title="Alternar grados y radianes">DEG</button></div>
+        <div class="display" aria-live="polite" aria-atomic="true"><div id="expression" class="expression">0</div><div id="result" class="result">0</div><div id="error" class="error" role="status"></div></div>
+        
+        <div class="keys" id="keys">
+          <button data-value="sin(" class="fn">sin</button><button data-value="cos(" class="fn">cos</button><button data-value="tan(" class="fn">tan</button><button data-value="sqrt(" class="fn">√</button><button data-action="clear" class="danger">AC</button>
+          <button data-value="log(" class="fn">log</button><button data-value="ln(" class="fn">ln</button><button data-value="(" class="fn">(</button><button data-value=")" class="fn">)</button><button data-action="backspace" class="fn">⌫</button>
+          <button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button><button data-value="/" class="operator">÷</button><button data-value="^2" class="operator">x²</button>
+          <button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button data-value="*" class="operator">×</button><button data-value="^" class="operator">xʸ</button>
+          <button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button data-value="-" class="operator">−</button><button data-value="!" class="operator">n!</button>
+          <button data-value="π" class="fn">π</button><button data-value="0">0</button><button data-value="." >.</button><button data-value="+" class="operator">+</button><button data-action="equals" class="equals">=</button>
+        </div>
+        <div class="helper"><span>⌨ Usa tu teclado para escribir</span><span>Enter = calcular · Esc = borrar</span></div>
+      </section>
+      <aside class="info-panel">
+        <div class="info-title">EXPLORE MORE <span class="rule"></span></div>
+        <h2>Las matemáticas,<br><em>en tus manos.</em></h2>
+        <p>Una calculadora científica hecha con HTML, CSS y JavaScript. Funciona desde el navegador, incluso sin internet.</p>
+        <div class="feature"><span class="feature-icon">ƒx</span><div><strong>Funciones avanzadas</strong><small>Trigonometría, raíces, logaritmos y potencias</small></div></div>
+        <div class="feature"><span class="feature-icon">°</span><div><strong>Grados y radianes</strong><small>Cambia entre DEG y RAD con un clic</small></div></div>
+        <div class="feature"><span class="feature-icon">⌘</span><div><strong>Acceso rápido</strong><small>Diseño adaptable a computadora y celular</small></div></div>
+        <div class="note"><span>TIP</span> Usa paréntesis para combinar operaciones; por ejemplo <code>2*(3+4)</code>.</div>
+      </aside>
+    </div>
+    
+    <footer>NovaCalc · Proyecto de Matemáticas Discretas 02 <span>Hecho con ♥ y JavaScript</span></footer>
+  </main>
+</body>
+</html>
