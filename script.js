@@ -50,3 +50,10 @@ keysEl.addEventListener('click',ev=>{const btn=ev.target.closest('button');if(!b
 modeEl.addEventListener('click',()=>{degreeMode=!degreeMode;modeEl.textContent=degreeMode?'DEG':'RAD';refresh();});
 document.addEventListener('keydown',ev=>{if(ev.ctrlKey||ev.altKey||ev.metaKey||['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;const k=ev.key;if(/^[0-9.+\-*/^()%!]$/.test(k)&&k.length===1){ev.preventDefault();append(k);}else if(k==='Enter'||k==='='){ev.preventDefault();equals();}else if(k==='Backspace'){ev.preventDefault();backspace();}else if(k==='Escape'){ev.preventDefault();clearAll();}});
 refresh();
+
+// CAMBIO 1: tema claro/oscuro, guardado en el navegador.
+const themeButton=document.querySelector('#themeToggle');
+if(localStorage.getItem('novacalc-theme')==='light')document.body.classList.add('light');
+function updateThemeLabel(){themeButton.textContent=document.body.classList.contains('light')?'☾ Tema oscuro':'☀ Tema claro';}
+themeButton.addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('novacalc-theme',document.body.classList.contains('light')?'light':'dark');updateThemeLabel();});
+updateThemeLabel();
